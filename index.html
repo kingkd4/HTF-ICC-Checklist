@@ -5,680 +5,531 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HTF ICC Checklist</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-
-<!-- For browser tab icon -->
-<link rel="icon" href="IMG_5352.jpeg" type="image/x-icon">
-
-<!-- For Apple devices (Add to Home Screen) -->
-<link rel="apple-touch-icon" href="IMG_5352.jpeg">
-
-<!-- Optional: For Android Chrome -->
-<link rel="manifest" href="manifest.json">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #f5f0e8;
-    --cream-dark: #ede6d6;
-    --ink: #1a1610;
-    --main: #659ea5;
-    --sub: #03468F;
-    --item: #2a6478;
-    --gold: #b8965a;
-    --gold-light: #d4b07a;
-    --bg: #faf7f2;
-    --warn: #c17b4a;
-    --pass: #4a8c72;
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-- { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+–cream: #f7f3ee;
+–cream-dark: #ede7dd;
+–teal: #5b8c8a;
+–teal-light: #7aadab;
+–teal-dim: rgba(91,140,138,0.12);
+–rose: #c4796a;
+–text: #2c2825;
+–text-muted: #8a7f78;
+–border: rgba(91,140,138,0.2);
+–shadow: 0 4px 24px rgba(44,40,37,0.08);
+}
 
 body {
-background: var(–bg);
+background: var(–cream);
 font-family: ‘Jost’, sans-serif;
+color: var(–text);
 min-height: 100vh;
-padding: 24px 16px 48px;
-color: var(–ink);
+padding: 32px 16px 60px;
 }
 
-.container {
-max-width: 540px;
-margin: 0 auto;
-}
-
-/* Header */
-.header {
+header {
 text-align: center;
-padding: 32px 0 28px;
-border-bottom: 1px solid rgba(101,158,165,0.3);
-margin-bottom: 28px;
+margin-bottom: 36px;
 }
 
-.header-eyebrow {
-font-family: ‘Jost’, sans-serif;
-font-weight: 300;
-font-size: 10px;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-color: var(–main);
-margin-bottom: 10px;
-}
-
-.header h1 {
+header h1 {
 font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.2rem;
 font-weight: 300;
-font-size: 36px;
-color: var(–sub);
-line-height: 1.1;
-letter-spacing: 0.02em;
+letter-spacing: 0.04em;
+color: var(–text);
 }
 
-.header h1 em {
-font-style: italic;
-color: var(–main);
-}
-
-.header-sub {
-margin-top: 8px;
-font-size: 11px;
+header p {
+font-size: 0.75rem;
 font-weight: 300;
+color: var(–text-muted);
 letter-spacing: 0.12em;
-color: var(–item);
 text-transform: uppercase;
+margin-top: 6px;
 }
 
-/* Direction Toggle */
-.direction-toggle {
+/* Toggle */
+.toggle-wrap {
 display: flex;
-gap: 8px;
-margin-bottom: 28px;
-background: var(–cream-dark);
-border-radius: 10px;
-padding: 4px;
-}
-
-.dir-btn {
-flex: 1;
-padding: 10px;
-border: none;
-border-radius: 8px;
-font-family: ‘Jost’, sans-serif;
-font-size: 11px;
-letter-spacing: 0.14em;
-text-transform: uppercase;
-font-weight: 500;
-cursor: pointer;
-transition: all 0.2s ease;
-background: transparent;
-color: #888;
-}
-
-.dir-btn.active-long {
-background: var(–pass);
-color: white;
-box-shadow: 0 2px 8px rgba(74,140,114,0.3);
-}
-
-.dir-btn.active-short {
-background: var(–warn);
-color: white;
-box-shadow: 0 2px 8px rgba(193,123,74,0.3);
-}
-
-/* Phase label */
-.phase-label {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 13px;
-color: var(–gold);
-letter-spacing: 0.08em;
-margin-bottom: 10px;
-padding-left: 4px;
-}
-
-/* Steps */
-.steps {
-display: flex;
-flex-direction: column;
-gap: 8px;
-margin-bottom: 24px;
-}
-
-.step {
-background: white;
-border: 1px solid rgba(101,158,165,0.2);
-border-radius: 12px;
-padding: 14px 16px;
-display: flex;
-align-items: flex-start;
-gap: 14px;
-cursor: pointer;
-transition: all 0.18s ease;
-position: relative;
-overflow: hidden;
-}
-
-.step::before {
-content: ‘’;
-position: absolute;
-left: 0; top: 0; bottom: 0;
-width: 3px;
-background: rgba(101,158,165,0.15);
-transition: background 0.2s;
-}
-
-.step:hover {
-border-color: rgba(101,158,165,0.4);
-transform: translateX(2px);
-}
-
-.step.checked {
-background: rgba(101,158,165,0.05);
-border-color: rgba(101,158,165,0.35);
-}
-
-.step.checked::before {
-background: var(–main);
-}
-
-.step.blocked {
-opacity: 0.35;
-pointer-events: none;
-}
-
-.step-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 18px;
-font-weight: 300;
-color: var(–main);
-min-width: 22px;
-line-height: 1;
-margin-top: 1px;
-}
-
-.step-content {
-flex: 1;
-}
-
-.step-title {
-font-size: 13px;
-font-weight: 500;
-color: var(–item);
-line-height: 1.35;
-margin-bottom: 3px;
-}
-
-.step-note {
-font-size: 11px;
-font-weight: 300;
-color: var(–sub);
-line-height: 1.45;
-font-style: italic;
-}
-
-.step-check {
-width: 20px;
-height: 20px;
-border-radius: 50%;
-border: 1.5px solid rgba(101,158,165,0.4);
-display: flex;
-align-items: center;
 justify-content: center;
-flex-shrink: 0;
-transition: all 0.18s ease;
-margin-top: 1px;
-}
-
-.step.checked .step-check {
-background: var(–main);
-border-color: var(–main);
-}
-
-.step-check svg {
-opacity: 0;
-transition: opacity 0.15s;
-}
-
-.step.checked .step-check svg {
-opacity: 1;
-}
-
-/* Branch */
-.branch-section {
-margin-bottom: 24px;
-border: 1px dashed rgba(184,150,90,0.4);
-border-radius: 12px;
-padding: 16px;
-background: rgba(245,240,232,0.5);
-}
-
-.branch-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 13px;
-font-weight: 500;
-font-style: italic;
-color: var(–gold);
-margin-bottom: 12px;
-display: flex;
-align-items: center;
-gap: 6px;
-}
-
-.branch-title::before {
-content: ‘⤷’;
-font-size: 14px;
-}
-
-/* Status bar */
-.status-bar {
-background: white;
-border: 1px solid rgba(101,158,165,0.2);
-border-radius: 12px;
-padding: 16px;
-margin-top: 8px;
-}
-
-.status-row {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 10px;
-}
-
-.status-label {
-font-size: 10px;
-letter-spacing: 0.14em;
-text-transform: uppercase;
-color: var(–main);
-font-weight: 400;
-}
-
-.status-count {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 18px;
-color: var(–sub);
-}
-
-.progress-track {
-height: 4px;
-background: rgba(101,158,165,0.15);
-border-radius: 2px;
+gap: 0;
+margin-bottom: 28px;
+border: 1.5px solid var(–border);
+border-radius: 40px;
+width: fit-content;
+margin-inline: auto;
 overflow: hidden;
-margin-bottom: 12px;
+background: white;
+}
+
+.toggle-btn {
+padding: 10px 32px;
+font-family: ‘Jost’, sans-serif;
+font-size: 0.8rem;
+font-weight: 400;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+border: none;
+cursor: pointer;
+background: transparent;
+color: var(–text-muted);
+transition: all 0.25s ease;
+}
+
+.toggle-btn.active-buy {
+background: var(–teal);
+color: white;
+border-radius: 40px;
+}
+
+.toggle-btn.active-sell {
+background: var(–rose);
+color: white;
+border-radius: 40px;
+}
+
+/* Progress bar */
+.progress-wrap {
+max-width: 520px;
+margin: 0 auto 28px;
+}
+
+.progress-label {
+display: flex;
+justify-content: space-between;
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–text-muted);
+margin-bottom: 8px;
+}
+
+.progress-bar {
+height: 3px;
+background: var(–cream-dark);
+border-radius: 4px;
+overflow: hidden;
 }
 
 .progress-fill {
 height: 100%;
-background: linear-gradient(90deg, var(–main), var(–sub));
-border-radius: 2px;
+border-radius: 4px;
 transition: width 0.4s ease;
+background: var(–teal);
 }
 
-.entry-badge {
-display: none;
-width: 100%;
-padding: 10px;
-border-radius: 8px;
-text-align: center;
+.progress-fill.sell-fill {
+background: var(–rose);
+}
+
+/* Sections */
+.checklist {
+max-width: 520px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.section-label {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.95rem;
+font-style: italic;
+color: var(–text-muted);
+letter-spacing: 0.05em;
+padding: 4px 0 2px;
+margin-top: 8px;
+border-bottom: 1px solid var(–border);
+padding-bottom: 6px;
+}
+
+/* Items */
+.item {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+background: white;
+border: 1.5px solid var(–border);
+border-radius: 14px;
+padding: 14px 16px;
+cursor: pointer;
+transition: all 0.2s ease;
+user-select: none;
+}
+
+.item:hover {
+border-color: var(–teal-light);
+box-shadow: var(–shadow);
+}
+
+.item.sell-mode:hover {
+border-color: var(–rose);
+}
+
+.item.checked {
+background: var(–teal-dim);
+border-color: var(–teal);
+}
+
+.item.checked.sell-mode {
+background: rgba(196,121,106,0.1);
+border-color: var(–rose);
+}
+
+.checkbox {
+width: 22px;
+height: 22px;
+border-radius: 50%;
+border: 1.5px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+margin-top: 1px;
+transition: all 0.2s ease;
+}
+
+.item.checked .checkbox {
+background: var(–teal);
+border-color: var(–teal);
+}
+
+.item.checked.sell-mode .checkbox {
+background: var(–rose);
+border-color: var(–rose);
+}
+
+.checkmark {
+opacity: 0;
+transform: scale(0.5);
+transition: all 0.2s ease;
+color: white;
 font-size: 11px;
+}
+
+.item.checked .checkmark {
+opacity: 1;
+transform: scale(1);
+}
+
+.step-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.75rem;
+color: var(–text-muted);
+flex-shrink: 0;
+margin-top: 3px;
+width: 16px;
+font-style: italic;
+}
+
+.item-content {
+flex: 1;
+}
+
+.item-title {
+font-size: 0.85rem;
 font-weight: 500;
-letter-spacing: 0.12em;
-text-transform: uppercase;
-animation: fadeIn 0.4s ease;
+color: var(–text);
+line-height: 1.4;
 }
 
-.entry-badge.pass {
-display: block;
-background: rgba(74,140,114,0.12);
-color: var(–pass);
-border: 1px solid rgba(74,140,114,0.3);
+.item-sub {
+font-size: 0.75rem;
+color: var(–text-muted);
+margin-top: 3px;
+font-weight: 300;
+line-height: 1.4;
 }
 
-.entry-badge.hold {
-display: block;
-background: rgba(193,123,74,0.1);
-color: var(–warn);
-border: 1px solid rgba(193,123,74,0.25);
+/* Branch note */
+.branch-note {
+background: var(–cream-dark);
+border-left: 2px solid var(–teal);
+border-radius: 0 10px 10px 0;
+padding: 10px 14px;
+font-size: 0.75rem;
+color: var(–text-muted);
+line-height: 1.5;
 }
 
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(4px); }
-to { opacity: 1; transform: translateY(0); }
+.branch-note.sell-branch {
+border-left-color: var(–rose);
 }
 
 /* Reset */
 .reset-btn {
 display: block;
-width: 100%;
-margin-top: 16px;
-padding: 12px;
-background: transparent;
-border: 1px solid rgba(101,158,165,0.3);
-border-radius: 10px;
+margin: 32px auto 0;
+padding: 10px 28px;
+border: 1.5px solid var(–border);
+border-radius: 40px;
+background: white;
 font-family: ‘Jost’, sans-serif;
-font-size: 10px;
-font-weight: 400;
-letter-spacing: 0.18em;
+font-size: 0.72rem;
+letter-spacing: 0.12em;
 text-transform: uppercase;
-color: var(–main);
+color: var(–text-muted);
 cursor: pointer;
-transition: all 0.2s;
+transition: all 0.2s ease;
 }
 
 .reset-btn:hover {
-background: rgba(101,158,165,0.08);
-border-color: var(–main);
+border-color: var(–teal);
+color: var(–teal);
 }
 
-/* Divider */
-.tf-divider {
-display: flex;
-align-items: center;
-gap: 10px;
-margin: 20px 0 12px;
+/* Complete state */
+.complete-msg {
+text-align: center;
+padding: 20px;
+display: none;
 }
 
-.tf-divider span {
-font-size: 9px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–main);
-white-space: nowrap;
-font-weight: 400;
+.complete-msg.visible {
+display: block;
+animation: fadeUp 0.4s ease;
 }
 
-.tf-divider::before, .tf-divider::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: rgba(101,158,165,0.2);
+.complete-msg p {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.4rem;
+font-weight: 300;
+font-style: italic;
+color: var(–teal);
 }
+
+.complete-msg.sell-complete p {
+color: var(–rose);
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden { display: none; }
 </style>
 
 </head>
 <body>
-<div class="container">
 
-  <div class="header">
-    <div class="header-eyebrow">Indication · Correction · Continuation</div>
-    <h1>HTF <em>ICC</em><br>Checklist</h1>
-    <div class="header-sub">Multi-Timeframe Entry Protocol</div>
+<header>
+  <h1>HTF ICC Checklist</h1>
+  <p>Higher Timeframe · Indication · Correction · Continuation</p>
+</header>
+
+<div class="toggle-wrap">
+  <button class="toggle-btn active-buy" id="buyBtn" onclick="setMode('buy')">▲ Buy</button>
+  <button class="toggle-btn" id="sellBtn" onclick="setMode('sell')">▼ Sell</button>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Progress</span>
+    <span id="progressText">0 / 0</span>
   </div>
-
-  <!-- Direction Toggle -->
-
-  <div class="direction-toggle">
-    <button class="dir-btn active-long" id="btn-long" onclick="setDirection('long')">▲ Long / Uptrend</button>
-    <button class="dir-btn" id="btn-short" onclick="setDirection('short')">▼ Short / Downtrend</button>
-  </div>
-
-  <!-- Phase 1: HTF Structure -->
-
-  <div class="tf-divider"><span>Phase 1 — HTF Structure</span></div>
-  <div class="steps" id="phase1">
-
-```
-<div class="step" id="s1" onclick="toggle('s1')">
-  <div class="step-num">1</div>
-  <div class="step-content">
-    <div class="step-title">Mark 4H swing high & low</div>
-    <div class="step-note" id="s1-note">Identify previous 4H swing high and swing low — these define your macro range</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
   </div>
 </div>
 
-<div class="step" id="s2" onclick="toggle('s2')">
-  <div class="step-num">2</div>
-  <div class="step-content">
-    <div class="step-title">Mark 1H swing high & low</div>
-    <div class="step-note">Drop to 1H — mark the swing structure within the 4H range</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
+<div class="checklist" id="checklist"></div>
+
+<div class="complete-msg" id="completeMsg">
+  <p id="completeText">Setup confirmed. Prepare to execute.</p>
 </div>
 
-<div class="step" id="s3" onclick="toggle('s3')">
-  <div class="step-num">3</div>
-  <div class="step-content">
-    <div class="step-title" id="s3-title">Indication confirmed on 1H or 4H</div>
-    <div class="step-note" id="s3-note">Price makes a HH & HL (uptrend) on either timeframe — indication phase is live</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-```
-
-  </div>
-
-  <!-- Phase 2: Correction -->
-
-  <div class="tf-divider"><span>Phase 2 — Correction (15 min)</span></div>
-  <div class="steps" id="phase2">
-
-```
-<div class="step" id="s4" onclick="toggle('s4')">
-  <div class="step-num">4</div>
-  <div class="step-content">
-    <div class="step-title">Drop to 15 min — watch for correction end</div>
-    <div class="step-note" id="s4-note">Wait for BOS on 15 min confirming the correction is over before scaling down</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-
-<div class="step" id="s5" onclick="toggle('s5')">
-  <div class="step-num">5</div>
-  <div class="step-content">
-    <div class="step-title" id="s5-title">Mark pink line — correction swing high</div>
-    <div class="step-note" id="s5-note">Mark the HH & HL level with a pink line on 15 min — this is the continuation trigger level</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-```
-
-  </div>
-
-  <!-- Branch A / B -->
-
-  <div class="branch-section">
-    <div class="branch-title">Correction Path — choose one</div>
-
-```
-<div class="steps">
-  <div class="step" id="s6a" onclick="toggle('s6a')">
-    <div class="step-num" style="color:var(--pass)">A</div>
-    <div class="step-content">
-      <div class="step-title">Price DID come back under swing level on 15 min</div>
-      <div class="step-note">Clean correction — wait for price to break above the marked correction swing high (pink line), then scale to 5 min immediately</div>
-    </div>
-    <div class="step-check">
-      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-        <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-
-  <div class="step" id="s6b" onclick="toggle('s6b')">
-    <div class="step-num" style="color:var(--gold)">B</div>
-    <div class="step-content">
-      <div class="step-title">Price did NOT come back under swing level</div>
-      <div class="step-note">Shallow correction — once indication is over, scale to 5 min. Wait for continuation to push above pink line on 15 min, then immediately scale to 5 min</div>
-    </div>
-    <div class="step-check">
-      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-        <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-</div>
-```
-
-  </div>
-
-  <!-- Phase 3: Entry -->
-
-  <div class="tf-divider"><span>Phase 3 — Entry (5 min / 1 min)</span></div>
-  <div class="steps" id="phase3">
-
-```
-<div class="step" id="s7" onclick="toggle('s7')">
-  <div class="step-num">6</div>
-  <div class="step-content">
-    <div class="step-title">5 min break of pink line confirmed</div>
-    <div class="step-note">Price breaks above the pink line on 5 min — enter on the break or wait for the retest (retest is acceptable)</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-
-<div class="step" id="s8" onclick="toggle('s8')">
-  <div class="step-num">7</div>
-  <div class="step-content">
-    <div class="step-title">All timeframes aligned & correlating</div>
-    <div class="step-note">4H, 1H, 15 min, and 5 min all showing the same directional bias — all must correlate before entering</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-
-<div class="step" id="s9" onclick="toggle('s9')">
-  <div class="step-num">8</div>
-  <div class="step-content">
-    <div class="step-title" id="s9-title">Drop to 1 min for entry & stop placement</div>
-    <div class="step-note" id="s9-note">Take entry on 1 min — place stop above 5 min swing high (short) or below 5 min swing low (long)</div>
-  </div>
-  <div class="step-check">
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-```
-
-  </div>
-
-  <!-- Status -->
-
-  <div class="status-bar">
-    <div class="status-row">
-      <span class="status-label">Checklist Progress</span>
-      <span class="status-count" id="count-display">0 / 8</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-    </div>
-    <div class="entry-badge" id="entry-badge"></div>
-  </div>
-
-<button class="reset-btn" onclick="resetAll()">↺   Reset Checklist</button>
-
-</div>
+<button class="reset-btn" onclick="resetAll()">Reset Checklist</button>
 
 <script>
-  const TOTAL = 8;
-  let direction = 'long';
-  const checked = new Set();
-
-  const longLabels = {
-    s1: ['Mark 4H swing high & low', 'Identify previous 4H swing high and swing low — these define your macro range'],
-    s3: ['Indication confirmed on 1H or 4H', 'Price makes HH & HL (uptrend) on either TF — indication phase is live'],
-    s4: ['Drop to 15 min — watch for correction end', 'Wait for BOS on 15 min confirming the pullback is over'],
-    s5: ['Mark pink line — correction swing high', 'Mark the HH & HL level in pink on 15 min — continuation trigger'],
-    s9: ['Drop to 1 min for entry & stop placement', 'Take entry on 1 min — stop below 5 min swing low (long)']
-  };
-
-  const shortLabels = {
-    s1: ['Mark 4H swing high & low', 'Identify previous 4H swing high and swing low — these define your macro range'],
-    s3: ['Indication confirmed on 1H or 4H', 'Price makes LH & LL (downtrend) on either TF — indication phase is live'],
-    s4: ['Drop to 15 min — watch for correction end', 'Wait for BOS on 15 min confirming the correction (pullback up) is over'],
-    s5: ['Mark pink line — correction swing low', 'Mark the LH & LL level in pink on 15 min — continuation trigger'],
-    s9: ['Drop to 1 min for entry & stop placement', 'Take entry on 1 min — stop above 5 min swing high (short)']
-  };
-
-  function setDirection(dir) {
-    direction = dir;
-    document.getElementById('btn-long').className = 'dir-btn' + (dir === 'long' ? ' active-long' : '');
-    document.getElementById('btn-short').className = 'dir-btn' + (dir === 'short' ? ' active-short' : '');
-    applyLabels();
-    resetAll();
+const buySteps = [
+  {
+    section: "Phase 1 — Higher Timeframe Bias",
+    items: [
+      { title: "Mark 4H swing high & swing low", sub: "Identify the most recent 4H structure. These are your primary reference levels." },
+      { title: "Mark 1H swing high & swing low", sub: "Drill down to the 1H and mark the most recent HH and HL structure." },
+      { title: "Confirm bullish bias on 4H or 1H", sub: "Price should be making HH and HL on at least one HTF. All timeframes must align." },
+    ]
+  },
+  {
+    section: "Phase 2 — Indication",
+    items: [
+      { title: "Identify indication on 4H or 1H", sub: "Look for a clear bullish move (BOS / impulse) on the 1H or 4H that signals upward intent." },
+      { title: "Confirm indication is complete", sub: "Wait for the impulse leg to finish before dropping to lower timeframes." },
+    ]
+  },
+  {
+    section: "Phase 3 — Correction",
+    items: [
+      { title: "Drop to 15min — watch for correction to end", sub: "Monitor the 15-minute chart for price to pull back (correct) after the indication." },
+      {
+        title: "Identify correction type",
+        sub: "Two valid correction paths — see note below:",
+        branch: true,
+        branchText: "Path A: Price pulls below the 15min swing low (HL) → Mark the correction swing high as your pink line.\nPath B: Price holds above the swing low (shallow pullback) → Scale directly to 5min once indication appears over."
+      },
+      { title: "Mark pink line (correction swing high / HH–HL level)", sub: "Draw a pink line at the HH or HL formed during the correction on the 15min. This is your entry trigger level." },
+    ]
+  },
+  {
+    section: "Phase 4 — Continuation Entry",
+    items: [
+      { title: "15min candle breaks above pink line", sub: "Wait for a clear break of the pink line on the 15-minute chart. Continuation confirmed — scale to 5min immediately." },
+      { title: "Scale to 5min chart", sub: "Drill down to the 5-minute for entry refinement." },
+      { title: "Look for 5min entry confirmation", sub: "Expect a retest of the pink line or 5min structure after the break. Enter on the retest or 1min signal." },
+      { title: "Set stop loss below 5min swing low", sub: "Place stop below the most recent 5min swing low (the HL formed during the correction)." },
+    ]
+  },
+  {
+    section: "Phase 5 — Alignment Check",
+    items: [
+      { title: "4H direction ✓ aligned bullish", sub: "" },
+      { title: "1H direction ✓ aligned bullish (HH + HL)", sub: "" },
+      { title: "15min correction completed ✓", sub: "" },
+      { title: "5min entry confirmed ✓", sub: "All timeframes must correlate before executing." },
+    ]
   }
+];
 
-  function applyLabels() {
-    const labels = direction === 'long' ? longLabels : shortLabels;
-    for (const [id, [title, note]] of Object.entries(labels)) {
-      const titleEl = document.querySelector(`#${id} .step-title`);
-      const noteEl = document.querySelector(`#${id} .step-note`);
-      if (titleEl) titleEl.textContent = title;
-      if (noteEl) noteEl.textContent = note;
-    }
+const sellSteps = [
+  {
+    section: "Phase 1 — Higher Timeframe Bias",
+    items: [
+      { title: "Mark 4H swing high & swing low", sub: "Identify the most recent 4H structure. These are your primary reference levels." },
+      { title: "Mark 1H swing high & swing low", sub: "Drill down to the 1H and mark the most recent LH and LL structure." },
+      { title: "Confirm bearish bias on 4H or 1H", sub: "Price should be making LH and LL on at least one HTF. All timeframes must align." },
+    ]
+  },
+  {
+    section: "Phase 2 — Indication",
+    items: [
+      { title: "Identify indication on 4H or 1H", sub: "Look for a clear bearish move (BOS / impulse) on the 1H or 4H that signals downward intent." },
+      { title: "Confirm indication is complete", sub: "Wait for the impulse leg to finish before dropping to lower timeframes." },
+    ]
+  },
+  {
+    section: "Phase 3 — Correction",
+    items: [
+      { title: "Drop to 15min — watch for correction to end", sub: "Monitor the 15-minute chart for price to pull back (correct) upward after the indication." },
+      {
+        title: "Identify correction type",
+        sub: "Two valid correction paths — see note below:",
+        branch: true,
+        branchText: "Path A: Price rallies above the 15min swing high (LH) → Mark the correction swing low as your pink line.\nPath B: Price stays below the swing high (shallow pullback) → Scale directly to 5min once indication appears over."
+      },
+      { title: "Mark pink line (correction swing low / LH–LL level)", sub: "Draw a pink line at the LH or LL formed during the correction on the 15min. This is your entry trigger level." },
+    ]
+  },
+  {
+    section: "Phase 4 — Continuation Entry",
+    items: [
+      { title: "15min candle breaks below pink line", sub: "Wait for a clear break of the pink line on the 15-minute chart. Continuation confirmed — scale to 5min immediately." },
+      { title: "Scale to 5min chart", sub: "Drill down to the 5-minute for entry refinement." },
+      { title: "Look for 5min entry confirmation", sub: "Expect a retest of the pink line or 5min structure after the break. Enter on the retest or 1min signal." },
+      { title: "Set stop loss above 5min swing high", sub: "Place stop above the most recent 5min swing high (the LH formed during the correction)." },
+    ]
+  },
+  {
+    section: "Phase 5 — Alignment Check",
+    items: [
+      { title: "4H direction ✓ aligned bearish", sub: "" },
+      { title: "1H direction ✓ aligned bearish (LH + LL)", sub: "" },
+      { title: "15min correction completed ✓", sub: "" },
+      { title: "5min entry confirmed ✓", sub: "All timeframes must correlate before executing." },
+    ]
   }
+];
 
-  function toggle(id) {
-    const el = document.getElementById(id);
-    if (checked.has(id)) {
-      checked.delete(id);
-      el.classList.remove('checked');
-    } else {
-      checked.add(id);
-      el.classList.add('checked');
-    }
-    updateStatus();
+let mode = 'buy';
+let checked = {};
+
+function setMode(m) {
+  mode = m;
+  checked = {};
+  document.getElementById('buyBtn').className = 'toggle-btn' + (m === 'buy' ? ' active-buy' : '');
+  document.getElementById('sellBtn').className = 'toggle-btn' + (m === 'sell' ? ' active-sell' : '');
+  document.getElementById('completeMsg').className = 'complete-msg';
+  render();
+}
+
+function render() {
+  const steps = mode === 'buy' ? buySteps : sellSteps;
+  const fill = document.getElementById('progressFill');
+  fill.className = 'progress-fill' + (mode === 'sell' ? ' sell-fill' : '');
+
+  const checklist = document.getElementById('checklist');
+  checklist.innerHTML = '';
+
+  let totalItems = 0;
+  let totalChecked = 0;
+  let stepNum = 0;
+
+  steps.forEach(section => {
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = section.section;
+    checklist.appendChild(label);
+
+    section.items.forEach(item => {
+      stepNum++;
+      const key = `${mode}_${stepNum}`;
+      totalItems++;
+      if (checked[key]) totalChecked++;
+
+      const el = document.createElement('div');
+      el.className = 'item' + (checked[key] ? ' checked' : '') + (mode === 'sell' ? ' sell-mode' : '');
+      el.onclick = () => toggle(key);
+
+      el.innerHTML = `
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="step-num">${stepNum}</div>
+        <div class="item-content">
+          <div class="item-title">${item.title}</div>
+          ${item.sub ? `<div class="item-sub">${item.sub}</div>` : ''}
+        </div>
+      `;
+      checklist.appendChild(el);
+
+      if (item.branch) {
+        const note = document.createElement('div');
+        note.className = 'branch-note' + (mode === 'sell' ? ' sell-branch' : '');
+        note.style.whiteSpace = 'pre-line';
+        note.textContent = item.branchText;
+        checklist.appendChild(note);
+      }
+    });
+  });
+
+  const pct = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
+  document.getElementById('progressText').textContent = `${totalChecked} / ${totalItems}`;
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  const msg = document.getElementById('completeMsg');
+  const txt = document.getElementById('completeText');
+  if (totalChecked === totalItems && totalItems > 0) {
+    txt.textContent = mode === 'buy' ? 'All conditions met. Execute long.' : 'All conditions met. Execute short.';
+    msg.className = 'complete-msg visible' + (mode === 'sell' ? ' sell-complete' : '');
+  } else {
+    msg.className = 'complete-msg';
   }
+}
 
-  function updateStatus() {
-    // count only numbered steps (not branch A/B which are s6a, s6b)
-    const numbered = ['s1','s2','s3','s4','s5','s7','s8','s9'];
-    const done = numbered.filter(id => checked.has(id)).length;
-    const pct = Math.round((done / TOTAL) * 100);
-    document.getElementById('count-display').textContent = `${done} / ${TOTAL}`;
-    document.getElementById('progress-fill').style.width = pct + '%';
+function toggle(key) {
+  checked[key] = !checked[key];
+  render();
+}
 
-    const badge = document.getElementById('entry-badge');
-    if (done === TOTAL) {
-      badge.className = 'entry-badge pass';
-      badge.textContent = '✓ All conditions met — cleared to enter';
-    } else if (done >= 5) {
-      badge.className = 'entry-badge hold';
-      badge.textContent = `${TOTAL - done} condition${TOTAL - done > 1 ? 's' : ''} remaining`;
-    } else {
-      badge.className = 'entry-badge';
-      badge.textContent = '';
-    }
-  }
+function resetAll() {
+  checked = {};
+  document.getElementById('completeMsg').className = 'complete-msg';
+  render();
+}
 
-  function resetAll() {
-    checked.clear();
-    document.querySelectorAll('.step').forEach(el => el.classList.remove('checked'));
-    document.getElementById('count-display').textContent = '0 / 8';
-    document.getElementById('progress-fill').style.width = '0%';
-    document.getElementById('entry-badge').className = 'entry-badge';
-    document.getElementById('entry-badge').textContent = '';
-  }
-
-  applyLabels();
+render();
 </script>
 
 </body>
