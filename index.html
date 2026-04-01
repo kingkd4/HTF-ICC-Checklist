@@ -3,533 +3,502 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTF ICC Checklist</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>HTF ICC Strategy Checklist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-deep:   #1a4a2e;
+    --green-main:   #2d7a50;
+    --green-mid:    #3d9966;
+    --green-light:  #6ab98a;
+    --green-mist:   #e8f5ee;
+    --green-frost:  #f2faf5;
+    --accent:       #1e6640;
+    --text-dark:    #1a3326;
+    --text-body:    #2d5c42;
+    --text-sub:     #4a8c65;
+    --text-hint:    #7ab894;
+    --border:       #b8ddc8;
+    --border-light: #d5eedd;
+    --white:        #ffffff;
+    --shadow:       rgba(45,122,80,.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--green-frost);
+    color: var(--text-body);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
 
-:root {
-–cream: #f7f3ee;
-–cream-dark: #ede7dd;
-–teal: #5b8c8a;
-–teal-light: #7aadab;
-–teal-dim: rgba(91,140,138,0.12);
-–rose: #c4796a;
-–text: #2c2825;
-–text-muted: #8a7f78;
-–border: rgba(91,140,138,0.2);
-–shadow: 0 4px 24px rgba(44,40,37,0.08);
-}
-
-body {
-background: var(–cream);
-font-family: ‘Jost’, sans-serif;
-color: var(–text);
-min-height: 100vh;
-padding: 32px 16px 60px;
-}
-
-header {
+/* Header */
+.header {
 text-align: center;
-margin-bottom: 36px;
+padding: 44px 24px 28px;
+background: var(–white);
+border-bottom: 1px solid var(–border-light);
 }
-
-header h1 {
+.eyebrow {
+font-size: 10px; font-weight: 700; letter-spacing: .22em;
+color: var(–text-sub); text-transform: uppercase; margin-bottom: 8px;
+}
+.header h1 {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 2.2rem;
-font-weight: 300;
-letter-spacing: 0.04em;
-color: var(–text);
+font-size: 52px; font-weight: 600; color: var(–green-main); line-height: 1; margin-bottom: 6px;
 }
-
-header p {
-font-size: 0.75rem;
-font-weight: 300;
-color: var(–text-muted);
-letter-spacing: 0.12em;
-text-transform: uppercase;
-margin-top: 6px;
+.subtitle {
+font-size: 10px; font-weight: 700; letter-spacing: .2em;
+color: var(–text-hint); text-transform: uppercase;
 }
+.divider { width: 60px; height: 1.5px; background: var(–green-light); margin: 14px auto 12px; border-radius: 2px; }
+.hearts { font-size: 20px; letter-spacing: 2px; }
 
-/* Toggle */
-.toggle-wrap {
-display: flex;
-justify-content: center;
-gap: 0;
-margin-bottom: 28px;
-border: 1.5px solid var(–border);
-border-radius: 40px;
-width: fit-content;
-margin-inline: auto;
-overflow: hidden;
-background: white;
+.container { padding: 20px 16px 0; max-width: 520px; margin: 0 auto; }
+
+/* Pre-market */
+.pm-card {
+background: var(–white); border: 1.5px solid var(–border);
+border-radius: 16px; overflow: hidden; margin-bottom: 12px;
+box-shadow: 0 2px 10px var(–shadow);
 }
-
-.toggle-btn {
-padding: 10px 32px;
-font-family: ‘Jost’, sans-serif;
-font-size: 0.8rem;
-font-weight: 400;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-border: none;
-cursor: pointer;
-background: transparent;
-color: var(–text-muted);
-transition: all 0.25s ease;
+.pm-header {
+display: flex; align-items: center; justify-content: space-between;
+padding: 16px 20px; cursor: pointer;
 }
-
-.toggle-btn.active-buy {
-background: var(–teal);
-color: white;
-border-radius: 40px;
-}
-
-.toggle-btn.active-sell {
-background: var(–rose);
-color: white;
-border-radius: 40px;
-}
-
-/* Progress bar */
-.progress-wrap {
-max-width: 520px;
-margin: 0 auto 28px;
-}
-
-.progress-label {
-display: flex;
-justify-content: space-between;
-font-size: 0.7rem;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–text-muted);
-margin-bottom: 8px;
-}
-
-.progress-bar {
-height: 3px;
-background: var(–cream-dark);
-border-radius: 4px;
-overflow: hidden;
-}
-
-.progress-fill {
-height: 100%;
-border-radius: 4px;
-transition: width 0.4s ease;
-background: var(–teal);
-}
-
-.progress-fill.sell-fill {
-background: var(–rose);
-}
-
-/* Sections */
-.checklist {
-max-width: 520px;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-gap: 10px;
-}
-
-.section-label {
+.pm-title {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 0.95rem;
-font-style: italic;
-color: var(–text-muted);
-letter-spacing: 0.05em;
-padding: 4px 0 2px;
-margin-top: 8px;
-border-bottom: 1px solid var(–border);
-padding-bottom: 6px;
+font-size: 22px; font-weight: 500; color: var(–text-dark);
 }
-
-/* Items */
-.item {
-display: flex;
-align-items: flex-start;
-gap: 14px;
-background: white;
-border: 1.5px solid var(–border);
-border-radius: 14px;
-padding: 14px 16px;
-cursor: pointer;
-transition: all 0.2s ease;
-user-select: none;
+.pm-title em { font-style: italic; color: var(–green-main); }
+.pm-right { display: flex; align-items: center; gap: 10px; }
+.pm-badge {
+font-size: 10px; font-weight: 700; letter-spacing: .12em;
+color: var(–text-sub); background: var(–green-mist);
+border: 1px solid var(–border); border-radius: 20px; padding: 4px 12px; transition: all .2s;
 }
+.pm-badge.pass { background: var(–green-main); color: #fff; border-color: var(–green-main); }
+.pm-badge.fail { background: #ffe0dd; color: #c0392b; border-color: #f5b7b1; }
+.chevron { color: var(–green-main); font-size: 18px; transition: transform .3s; }
+.chevron.open { transform: rotate(180deg); }
 
-.item:hover {
-border-color: var(–teal-light);
-box-shadow: var(–shadow);
+.pm-body { display: none; border-top: 1px solid var(–border-light); }
+.pm-body.open { display: block; }
+
+.pm-row {
+display: flex; align-items: flex-start; gap: 14px;
+padding: 13px 20px; border-bottom: 1px solid var(–border-light);
 }
-
-.item.sell-mode:hover {
-border-color: var(–rose);
-}
-
-.item.checked {
-background: var(–teal-dim);
-border-color: var(–teal);
-}
-
-.item.checked.sell-mode {
-background: rgba(196,121,106,0.1);
-border-color: var(–rose);
-}
-
-.checkbox {
-width: 22px;
-height: 22px;
-border-radius: 50%;
-border: 1.5px solid var(–border);
-display: flex;
-align-items: center;
-justify-content: center;
-flex-shrink: 0;
-margin-top: 1px;
-transition: all 0.2s ease;
-}
-
-.item.checked .checkbox {
-background: var(–teal);
-border-color: var(–teal);
-}
-
-.item.checked.sell-mode .checkbox {
-background: var(–rose);
-border-color: var(–rose);
-}
-
-.checkmark {
-opacity: 0;
-transform: scale(0.5);
-transition: all 0.2s ease;
-color: white;
-font-size: 11px;
-}
-
-.item.checked .checkmark {
-opacity: 1;
-transform: scale(1);
-}
-
-.step-num {
+.pm-row:last-of-type { border-bottom: none; }
+.pm-num {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 0.75rem;
-color: var(–text-muted);
-flex-shrink: 0;
-margin-top: 3px;
-width: 16px;
-font-style: italic;
+font-size: 16px; color: var(–text-hint); min-width: 16px; margin-top: 2px;
 }
-
-.item-content {
-flex: 1;
+.pm-col { flex: 1; }
+.pm-q { font-size: 13.5px; color: var(–text-body); line-height: 1.45; }
+.pm-sub { font-size: 11.5px; color: var(–text-hint); margin-top: 2px; }
+.pm-controls { display: flex; gap: 6px; flex-shrink: 0; align-items: flex-start; margin-top: 2px; }
+.pm-pill {
+font-size: 11px; font-weight: 700; letter-spacing: .06em;
+padding: 5px 14px; border-radius: 20px;
+border: 1.5px solid var(–border); background: transparent; color: var(–text-hint);
+cursor: pointer; transition: all .15s;
 }
-
-.item-title {
-font-size: 0.85rem;
-font-weight: 500;
-color: var(–text);
-line-height: 1.4;
+.pm-pill.yes.active { background: var(–green-main); color: #fff; border-color: var(–green-main); }
+.pm-pill.no.active  { background: #c0392b; color: #fff; border-color: #c0392b; }
+.pm-number {
+width: 52px; height: 32px; border: 1.5px solid var(–border);
+border-radius: 20px; background: transparent; color: var(–text-body);
+font-size: 13px; text-align: center; outline: none; transition: border-color .15s;
 }
+.pm-number:focus { border-color: var(–green-main); }
+.pm-number.filled { border-color: var(–green-main); color: var(–green-main); font-weight: 700; }
 
-.item-sub {
-font-size: 0.75rem;
-color: var(–text-muted);
-margin-top: 3px;
-font-weight: 300;
-line-height: 1.4;
+.pm-proceed {
+text-align: center; padding: 10px 20px 12px;
+font-family: ‘Cormorant Garamond’, serif; font-style: italic; font-size: 14px; color: var(–text-hint);
 }
-
-/* Branch note */
-.branch-note {
-background: var(–cream-dark);
-border-left: 2px solid var(–teal);
-border-radius: 0 10px 10px 0;
-padding: 10px 14px;
-font-size: 0.75rem;
-color: var(–text-muted);
-line-height: 1.5;
+.pm-rule {
+margin: 0 16px 16px; background: var(–green-mist);
+border: 1px solid var(–border); border-radius: 10px; padding: 12px 14px;
 }
+.pm-rule-label { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(–text-sub); margin-bottom: 5px; }
+.pm-rule-text { font-size: 12.5px; color: var(–text-body); line-height: 1.6; }
+.pm-rule-text strong { color: #c0392b; }
 
-.branch-note.sell-branch {
-border-left-color: var(–rose);
+/* Progress */
+.progress-card {
+background: var(–white); border: 1.5px solid var(–border);
+border-radius: 16px; padding: 16px 20px; margin-bottom: 6px;
 }
+.progress-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.progress-label { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(–text-sub); text-transform: uppercase; }
+.progress-count { font-family: ‘Cormorant Garamond’, serif; font-size: 20px; color: var(–green-main); font-weight: 600; }
+.progress-bar-bg { height: 5px; background: var(–green-mist); border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(–green-mid), var(–green-light)); border-radius: 4px; transition: width .4s ease; width: 0%; }
+.progress-pct { font-size: 11px; color: var(–text-hint); text-align: right; }
+.reset-row { text-align: right; padding: 4px 0 8px; }
+.reset-btn { font-size: 10px; font-weight: 700; letter-spacing: .14em; color: var(–text-hint); background: none; border: none; cursor: pointer; text-transform: uppercase; padding: 4px 2px; }
+.reset-btn:hover { color: var(–green-main); }
 
-/* Reset */
-.reset-btn {
-display: block;
-margin: 32px auto 0;
-padding: 10px 28px;
-border: 1.5px solid var(–border);
-border-radius: 40px;
-background: white;
-font-family: ‘Jost’, sans-serif;
-font-size: 0.72rem;
-letter-spacing: 0.12em;
-text-transform: uppercase;
-color: var(–text-muted);
-cursor: pointer;
-transition: all 0.2s ease;
+/* Tabs */
+.tab-row { display: flex; gap: 10px; margin-bottom: 18px; }
+.tab-btn {
+flex: 1; padding: 13px 8px; border-radius: 14px; font-size: 11px; font-weight: 700;
+letter-spacing: .14em; text-transform: uppercase; cursor: pointer;
+border: 1.5px solid var(–border); background: var(–white); color: var(–text-sub); transition: all .2s;
+display: flex; align-items: center; justify-content: center; gap: 6px;
 }
+.tab-btn.active { background: var(–green-main); color: #fff; border-color: var(–green-main); box-shadow: 0 3px 12px rgba(45,122,80,.25); }
 
-.reset-btn:hover {
-border-color: var(–teal);
-color: var(–teal);
+/* Steps */
+.step-card {
+background: var(–white); border: 1.5px solid var(–border);
+border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: box-shadow .2s;
 }
-
-/* Complete state */
-.complete-msg {
-text-align: center;
-padding: 20px;
-display: none;
+.step-card:hover { box-shadow: 0 3px 16px var(–shadow); }
+.step-card.completed { border-color: var(–green-light); }
+.step-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; }
+.step-dot { width: 9px; height: 9px; border-radius: 50%; background: var(–border); flex-shrink: 0; transition: background .3s; }
+.step-card.completed .step-dot { background: var(–green-main); }
+.step-title { font-family: ‘Cormorant Garamond’, serif; font-size: 19px; font-weight: 500; color: var(–green-deep); flex: 1; line-height: 1.3; }
+.step-num { color: var(–green-main); margin-right: 4px; }
+.step-body { padding: 0 18px 16px; }
+.step-note {
+font-family: ‘Cormorant Garamond’, serif; font-size: 14px; font-style: italic;
+color: var(–text-sub); line-height: 1.6;
+border-left: 2.5px solid var(–green-light); padding-left: 12px; margin-bottom: 14px;
 }
-
-.complete-msg.visible {
-display: block;
-animation: fadeUp 0.4s ease;
+.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(–border-light); cursor: pointer; }
+.check-item:last-of-type { border-bottom: none; }
+.check-box {
+width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(–border);
+flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center;
+transition: all .2s; background: var(–white);
 }
+.check-box.checked { background: var(–green-main); border-color: var(–green-main); }
+.check-box.checked::after { content:’’; display:block; width:5px; height:9px; border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg) translateY(-1px); }
+.check-text-wrap { flex: 1; }
+.check-text { font-size: 13.5px; color: var(–text-body); line-height: 1.5; transition: color .2s; }
+.check-item.done .check-text { color: var(–text-hint); text-decoration: line-through; }
+.check-hint { font-family:‘Cormorant Garamond’,serif; font-style:italic; font-size:12.5px; color:var(–text-hint); line-height:1.5; margin-top:2px; display:block; }
 
-.complete-msg p {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.4rem;
-font-weight: 300;
-font-style: italic;
-color: var(–teal);
-}
-
-.complete-msg.sell-complete p {
-color: var(–rose);
-}
-
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(10px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-.hidden { display: none; }
+.completion-banner { display:none; background:linear-gradient(135deg,var(–green-main),var(–accent)); color:#fff; border-radius:16px; padding:22px 20px; text-align:center; margin-bottom:16px; }
+.completion-banner.show { display:block; }
+.completion-banner h3 { font-family:‘Cormorant Garamond’,serif; font-size:26px; margin-bottom:4px; }
+.completion-banner p { font-size:13px; opacity:.85; }
 </style>
 
 </head>
 <body>
 
-<header>
-  <h1>HTF ICC Checklist</h1>
-  <p>Higher Timeframe · Indication · Correction · Continuation</p>
-</header>
-
-<div class="toggle-wrap">
-  <button class="toggle-btn active-buy" id="buyBtn" onclick="setMode('buy')">▲ Buy</button>
-  <button class="toggle-btn" id="sellBtn" onclick="setMode('sell')">▼ Sell</button>
+<div class="header">
+  <div class="eyebrow">Higher Timeframe Setup</div>
+  <h1>HTF ICC</h1>
+  <div class="subtitle">Indication · Correction · Continuation</div>
+  <div class="divider"></div>
+  <div class="hearts">💚🌿💚</div>
 </div>
 
-<div class="progress-wrap">
-  <div class="progress-label">
-    <span>Progress</span>
-    <span id="progressText">0 / 0</span>
+<div class="container">
+
+  <div class="pm-card">
+    <div class="pm-header" id="pmHeader">
+      <div class="pm-title">Pre-Market <em>Check</em></div>
+      <div class="pm-right">
+        <span class="pm-badge" id="pmBadge">PENDING</span>
+        <span class="chevron" id="pmChevron">▾</span>
+      </div>
+    </div>
+    <div class="pm-body" id="pmBody"></div>
   </div>
-  <div class="progress-bar">
-    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+
+  <div class="progress-card">
+    <div class="progress-top">
+      <span class="progress-label">Progress</span>
+      <span class="progress-count" id="progressCount">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="progress-pct" id="progressPct">0%</div>
   </div>
+  <div class="reset-row"><button class="reset-btn" onclick="resetAll()">↺ RESET</button></div>
+
+  <div class="tab-row">
+    <button class="tab-btn active" id="tabBuy"  onclick="setTab('buy')">💚 BUY SETUP</button>
+    <button class="tab-btn"        id="tabSell" onclick="setTab('sell')">🌿 SELL SETUP</button>
+  </div>
+
+  <div class="completion-banner" id="completionBanner">
+    <h3>Setup Complete ✓</h3>
+    <p>All HTF conditions confirmed. Await your entry trigger.</p>
+  </div>
+
+  <div id="stepsContainer"></div>
 </div>
-
-<div class="checklist" id="checklist"></div>
-
-<div class="complete-msg" id="completeMsg">
-  <p id="completeText">Setup confirmed. Prepare to execute.</p>
-</div>
-
-<button class="reset-btn" onclick="resetAll()">Reset Checklist</button>
 
 <script>
-const buySteps = [
-  {
-    section: "Phase 1 — Higher Timeframe Bias",
-    items: [
-      { title: "Mark 4H swing high & swing low", sub: "Identify the most recent 4H structure. These are your primary reference levels." },
-      { title: "Mark 1H swing high & swing low", sub: "Drill down to the 1H and mark the most recent HH and HL structure." },
-      { title: "Confirm bullish bias on 4H or 1H", sub: "Price should be making HH and HL on at least one HTF. All timeframes must align." },
-    ]
-  },
-  {
-    section: "Phase 2 — Indication",
-    items: [
-      { title: "Identify indication on 4H or 1H", sub: "Look for a clear bullish move (BOS / impulse) on the 1H or 4H that signals upward intent." },
-      { title: "Confirm indication is complete", sub: "Wait for the impulse leg to finish before dropping to lower timeframes." },
-    ]
-  },
-  {
-    section: "Phase 3 — Correction",
-    items: [
-      { title: "Drop to 15min — watch for correction to end", sub: "Monitor the 15-minute chart for price to pull back (correct) after the indication." },
-      {
-        title: "Identify correction type",
-        sub: "Two valid correction paths — see note below:",
-        branch: true,
-        branchText: "Path A: Price pulls below the 15min swing low (HL) → Mark the correction swing high as your pink line.\nPath B: Price holds above the swing low (shallow pullback) → Scale directly to 5min once indication appears over."
-      },
-      { title: "Mark pink line (correction swing high / HH–HL level)", sub: "Draw a pink line at the HH or HL formed during the correction on the 15min. This is your entry trigger level." },
-    ]
-  },
-  {
-    section: "Phase 4 — Continuation Entry",
-    items: [
-      { title: "15min candle breaks above pink line", sub: "Wait for a clear break of the pink line on the 15-minute chart. Continuation confirmed — scale to 5min immediately." },
-      { title: "Scale to 5min chart", sub: "Drill down to the 5-minute for entry refinement." },
-      { title: "Look for 5min entry confirmation", sub: "Expect a retest of the pink line or 5min structure after the break. Enter on the retest or 1min signal." },
-      { title: "Set stop loss below 5min swing low", sub: "Place stop below the most recent 5min swing low (the HL formed during the correction)." },
-    ]
-  },
-  {
-    section: "Phase 5 — Alignment Check",
-    items: [
-      { title: "4H direction ✓ aligned bullish", sub: "" },
-      { title: "1H direction ✓ aligned bullish (HH + HL)", sub: "" },
-      { title: "15min correction completed ✓", sub: "" },
-      { title: "5min entry confirmed ✓", sub: "All timeframes must correlate before executing." },
-    ]
-  }
+const pmQuestions = [
+  { type:'yn',  q:"Am I calm?",                          sub:"No frustration, no excitement." },
+  { type:'yn',  q:"Am I okay not trading today?",        sub:"" },
+  { type:'yn',  q:"If I lose 2 trades, will I stop?",    sub:"" },
+  { type:'yn',  q:"Do I know my exact setup?",           sub:"" },
+  { type:'num', q:"Max trades today?",                   sub:"" },
+  { type:'yn',  q:"If I miss setups, will I stay off?",  sub:"" },
 ];
 
-const sellSteps = [
-  {
-    section: "Phase 1 — Higher Timeframe Bias",
-    items: [
-      { title: "Mark 4H swing high & swing low", sub: "Identify the most recent 4H structure. These are your primary reference levels." },
-      { title: "Mark 1H swing high & swing low", sub: "Drill down to the 1H and mark the most recent LH and LL structure." },
-      { title: "Confirm bearish bias on 4H or 1H", sub: "Price should be making LH and LL on at least one HTF. All timeframes must align." },
-    ]
-  },
-  {
-    section: "Phase 2 — Indication",
-    items: [
-      { title: "Identify indication on 4H or 1H", sub: "Look for a clear bearish move (BOS / impulse) on the 1H or 4H that signals downward intent." },
-      { title: "Confirm indication is complete", sub: "Wait for the impulse leg to finish before dropping to lower timeframes." },
-    ]
-  },
-  {
-    section: "Phase 3 — Correction",
-    items: [
-      { title: "Drop to 15min — watch for correction to end", sub: "Monitor the 15-minute chart for price to pull back (correct) upward after the indication." },
-      {
-        title: "Identify correction type",
-        sub: "Two valid correction paths — see note below:",
-        branch: true,
-        branchText: "Path A: Price rallies above the 15min swing high (LH) → Mark the correction swing low as your pink line.\nPath B: Price stays below the swing high (shallow pullback) → Scale directly to 5min once indication appears over."
-      },
-      { title: "Mark pink line (correction swing low / LH–LL level)", sub: "Draw a pink line at the LH or LL formed during the correction on the 15min. This is your entry trigger level." },
-    ]
-  },
-  {
-    section: "Phase 4 — Continuation Entry",
-    items: [
-      { title: "15min candle breaks below pink line", sub: "Wait for a clear break of the pink line on the 15-minute chart. Continuation confirmed — scale to 5min immediately." },
-      { title: "Scale to 5min chart", sub: "Drill down to the 5-minute for entry refinement." },
-      { title: "Look for 5min entry confirmation", sub: "Expect a retest of the pink line or 5min structure after the break. Enter on the retest or 1min signal." },
-      { title: "Set stop loss above 5min swing high", sub: "Place stop above the most recent 5min swing high (the LH formed during the correction)." },
-    ]
-  },
-  {
-    section: "Phase 5 — Alignment Check",
-    items: [
-      { title: "4H direction ✓ aligned bearish", sub: "" },
-      { title: "1H direction ✓ aligned bearish (LH + LL)", sub: "" },
-      { title: "15min correction completed ✓", sub: "" },
-      { title: "5min entry confirmed ✓", sub: "All timeframes must correlate before executing." },
-    ]
-  }
-];
+const steps = {
+  buy: [
+    {
+      icon:"🗺️", title:"Step 0 — Establish 4H Bias",
+      note:"The 4H chart is your bias timeframe. Only take HTF buys when 4H structure is bullish or price is in a corrective pullback within a bullish 4H trend.",
+      items:[
+        { text:"Open the 4H chart and identify current market structure", hint:"Is price making HH/HL? That confirms a bullish 4H bias." },
+        { text:"Confirm 4H structure is bullish — HH/HL sequence intact", hint:"Do not take HTF buys against a bearish 4H structure." },
+        { text:"Mark the most recent 4H swing low — this is your bias anchor", hint:"Price must stay above this for the buy bias to remain valid." },
+        { text:"Confirm: is 4H currently in expansion or pullback phase?", hint:"Pullback = your entry window. Expansion = wait for the correction first." },
+      ]
+    },
+    {
+      icon:"📐", title:"Step 1 — Mark 4H & 1H Key Levels",
+      note:"Mark all key levels on both the 4H and 1H before price arrives. You react to levels you drew in advance — not ones you're drawing in real time.",
+      items:[
+        { text:"Mark the 4H swing High and 4H swing Low", hint:"These are your macro reference points for the setup." },
+        { text:"Mark any 4H Fair Value Gap (FVG) or Order Block in the buy zone", hint:"4H OBs and FVGs are high-conviction support zones." },
+        { text:"Drop to 1H — mark the 1H swing High and 1H swing Low", hint:"1H levels define the closer structure used for the indication." },
+        { text:"Mark any 1H FVG or Order Block that aligns with the 4H zone", hint:"4H + 1H confluence = strongest entry zones." },
+      ]
+    },
+    {
+      icon:"⚡", title:"Step 2 — Confirm 1H Indication",
+      note:"The Indication is a 1H Break of Structure above a swing high. Price must break and close above a 1H swing high. Mark this line — it anchors the rest of the setup.",
+      items:[
+        { text:"Price has broken a 1H swing high (1H BOS to the upside)", hint:"This is your HTF indication. The buy move has been signaled." },
+        { text:"Mark the 1H indication line (the broken 1H swing high)", hint:"This line is your reference for the correction and continuation." },
+        { text:"Confirm the break is a 1H candle body close — not just a wick", hint:"Body close = conviction. Wick breaks can be traps." },
+        { text:"Confirm the 1H BOS originated from a 4H or 1H key level", hint:"A break from a known POI carries significantly more weight." },
+      ]
+    },
+    {
+      icon:"🔄", title:"Step 3 — Watch 15m Correction",
+      note:"After the 1H BOS, drop to the 15m. Correction will show LH/LL structure on the 15m — opposite to the indication. Watch here. Do NOT enter during the correction.",
+      items:[
+        { text:"Drop to the 15m chart after the 1H indication is confirmed", hint:"The 15m is where you monitor the correction unfolding." },
+        { text:"Confirm 15m is forming corrective LH/LL structure", hint:"For buys, the correction must show lower highs and lower lows on the 15m." },
+        { text:"Price is pulling back toward the 1H indication line", hint:"The retrace back to that level is where your entry will form." },
+        { text:"Mark the 15m indication line as price approaches the 1H level", hint:"↳ This is the line price must cross for your entry trigger." },
+        { text:"Confirm: correction is NOT breaking below the 4H or 1H swing low", hint:"If the key swing low is breached, buy bias is invalidated. Step away." },
+      ]
+    },
+    {
+      icon:"🎯", title:"Step 4 — Entry: 15m Indication Line",
+      note:"Your entry is triggered when price crosses and closes above the 15m indication line you marked in Step 3. This 15m BOS signals the correction is over and continuation has begun.",
+      items:[
+        { text:"The 15m indication line is drawn and ready", hint:"You marked this during the correction phase in Step 3." },
+        { text:"Price crosses and closes above the 15m indication line (15m BOS)", hint:"This confirms the correction is over. Continuation is active." },
+        { text:"Entry candle shows momentum — strong body close, not a doji or wick", hint:"A weak candle at the line is a warning. Wait for conviction." },
+        { text:"SL placed below the most recent 15m correction swing low", hint:"That correction low is your invalidation point." },
+      ]
+    },
+    {
+      icon:"💰", title:"Step 5 — Targets & Management",
+      note:"Target the next 1H or 4H swing high. Take partial at the first HTF target and trail the runner to the bigger level. Do not exit at LTF noise.",
+      items:[
+        { text:"TP1 — next 1H swing high or nearest 1H resistance", hint:"Take 50% off here. Lock in the win." },
+        { text:"TP2 — next 4H swing high or 4H FVG above", hint:"Move SL to breakeven after TP1 and let TP2 run." },
+        { text:"Confirm R:R is minimum 1:2 before entering", hint:"If TP1 doesn't offer 1:2 from entry, skip this setup." },
+        { text:"Size down for the wider HTF stop loss", hint:"Max 1% risk. HTF SLs are wider — reduce contracts accordingly." },
+      ]
+    },
+  ],
 
-let mode = 'buy';
-let checked = {};
+  sell: [
+    {
+      icon:"🗺️", title:"Step 0 — Establish 4H Bias",
+      note:"The 4H chart is your bias timeframe. Only take HTF sells when 4H structure is bearish or price is in a corrective bounce within a bearish 4H trend.",
+      items:[
+        { text:"Open the 4H chart and identify current market structure", hint:"Is price making LH/LL? That confirms a bearish 4H bias." },
+        { text:"Confirm 4H structure is bearish — LH/LL sequence intact", hint:"Do not take HTF sells against a bullish 4H structure." },
+        { text:"Mark the most recent 4H swing high — this is your bias anchor", hint:"Price must stay below this for the sell bias to remain valid." },
+        { text:"Confirm: is 4H currently in expansion or pullback phase?", hint:"Pullback (bouncing up) = your entry window. Expansion = wait." },
+      ]
+    },
+    {
+      icon:"📐", title:"Step 1 — Mark 4H & 1H Key Levels",
+      note:"Mark all supply zones, bearish OBs, and FVGs on 4H and 1H before price arrives. Prepared traders react — reactive traders chase.",
+      items:[
+        { text:"Mark the 4H swing High and 4H swing Low", hint:"These are your macro reference points for the setup." },
+        { text:"Mark any 4H bearish FVG or Order Block in the sell zone", hint:"4H supply zones are high-conviction resistance areas." },
+        { text:"Drop to 1H — mark the 1H swing High and 1H swing Low", hint:"1H levels define the closer structure used for the indication." },
+        { text:"Mark any 1H bearish FVG or Order Block that aligns with the 4H zone", hint:"4H + 1H confluence = strongest sell zones." },
+      ]
+    },
+    {
+      icon:"⚡", title:"Step 2 — Confirm 1H Indication",
+      note:"The Indication is a 1H Break of Structure below a swing low. Price must break and close below a 1H swing low. Mark this line — it anchors the rest of the setup.",
+      items:[
+        { text:"Price has broken a 1H swing low (1H BOS to the downside)", hint:"This is your HTF indication. The sell move has been signaled." },
+        { text:"Mark the 1H indication line (the broken 1H swing low)", hint:"This line is your reference for the correction and continuation." },
+        { text:"Confirm the break is a 1H candle body close — not just a wick", hint:"Body close = conviction. Wick breaks below are traps." },
+        { text:"Confirm the 1H BOS originated from a 4H or 1H key level", hint:"A break from a known POI carries significantly more weight." },
+      ]
+    },
+    {
+      icon:"🔄", title:"Step 3 — Watch 15m Correction",
+      note:"After the 1H BOS, drop to the 15m. Correction will show HH/HL structure on the 15m — opposite to the indication. Watch here. Do NOT enter during the correction.",
+      items:[
+        { text:"Drop to the 15m chart after the 1H indication is confirmed", hint:"The 15m is where you monitor the correction unfolding." },
+        { text:"Confirm 15m is forming corrective HH/HL structure", hint:"For sells, the correction must show higher highs and higher lows on the 15m." },
+        { text:"Price is bouncing back up toward the 1H indication line", hint:"The retrace back to that level is where your entry will form." },
+        { text:"Mark the 15m indication line as price approaches the 1H level", hint:"↳ This is the line price must cross downward for your entry trigger." },
+        { text:"Confirm: correction is NOT breaking above the 4H or 1H swing high", hint:"If the key swing high is breached, sell bias is invalidated. Step away." },
+      ]
+    },
+    {
+      icon:"🎯", title:"Step 4 — Entry: 15m Indication Line",
+      note:"Your entry is triggered when price crosses and closes below the 15m indication line you marked in Step 3. This 15m BOS signals the correction is over and sell continuation has begun.",
+      items:[
+        { text:"The 15m indication line is drawn and ready", hint:"You marked this during the correction phase in Step 3." },
+        { text:"Price crosses and closes below the 15m indication line (15m BOS)", hint:"This confirms the correction is over. Sell continuation is active." },
+        { text:"Entry candle shows momentum — strong bearish body close, not a doji", hint:"A weak candle at the line is a warning. Wait for conviction." },
+        { text:"SL placed above the most recent 15m correction swing high", hint:"That correction high is your invalidation point." },
+      ]
+    },
+    {
+      icon:"💰", title:"Step 5 — Targets & Management",
+      note:"Target the next 1H or 4H swing low. Take partial at the first HTF target and trail the runner to the bigger level. Do not exit at LTF bounces.",
+      items:[
+        { text:"TP1 — next 1H swing low or nearest 1H support", hint:"Take 50% off here. Lock in the win." },
+        { text:"TP2 — next 4H swing low or 4H FVG below", hint:"Move SL to breakeven after TP1 and let TP2 run." },
+        { text:"Confirm R:R is minimum 1:2 before entering", hint:"If TP1 doesn't offer 1:2 from entry, skip this setup." },
+        { text:"Size down for the wider HTF stop loss", hint:"Max 1% risk. HTF SLs are wider — reduce contracts accordingly." },
+      ]
+    },
+  ]
+};
 
-function setMode(m) {
-  mode = m;
-  checked = {};
-  document.getElementById('buyBtn').className = 'toggle-btn' + (m === 'buy' ? ' active-buy' : '');
-  document.getElementById('sellBtn').className = 'toggle-btn' + (m === 'sell' ? ' active-sell' : '');
-  document.getElementById('completeMsg').className = 'complete-msg';
-  render();
+// STATE
+let currentTab = 'buy';
+let state = { buy:{}, sell:{}, pm:{} };
+
+function sk(tab,si,ii){ return `${tab}_s${si}_i${ii}`; }
+
+function loadState(){
+  try { const r=getCookie('htf_icc2'); if(r) state=JSON.parse(decodeURIComponent(r)); } catch(e){}
 }
+function saveState(){
+  const e=encodeURIComponent(JSON.stringify(state));
+  const x=new Date(Date.now()+365*24*60*60*1000).toUTCString();
+  document.cookie=`htf_icc2=${e}; expires=${x}; path=/; SameSite=Lax`;
+}
+function getCookie(n){ const m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)')); return m?m[1]:null; }
 
-function render() {
-  const steps = mode === 'buy' ? buySteps : sellSteps;
-  const fill = document.getElementById('progressFill');
-  fill.className = 'progress-fill' + (mode === 'sell' ? ' sell-fill' : '');
-
-  const checklist = document.getElementById('checklist');
-  checklist.innerHTML = '';
-
-  let totalItems = 0;
-  let totalChecked = 0;
-  let stepNum = 0;
-
-  steps.forEach(section => {
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.textContent = section.section;
-    checklist.appendChild(label);
-
-    section.items.forEach(item => {
-      stepNum++;
-      const key = `${mode}_${stepNum}`;
-      totalItems++;
-      if (checked[key]) totalChecked++;
-
-      const el = document.createElement('div');
-      el.className = 'item' + (checked[key] ? ' checked' : '') + (mode === 'sell' ? ' sell-mode' : '');
-      el.onclick = () => toggle(key);
-
-      el.innerHTML = `
-        <div class="checkbox"><span class="checkmark">✓</span></div>
-        <div class="step-num">${stepNum}</div>
-        <div class="item-content">
-          <div class="item-title">${item.title}</div>
-          ${item.sub ? `<div class="item-sub">${item.sub}</div>` : ''}
-        </div>
-      `;
-      checklist.appendChild(el);
-
-      if (item.branch) {
-        const note = document.createElement('div');
-        note.className = 'branch-note' + (mode === 'sell' ? ' sell-branch' : '');
-        note.style.whiteSpace = 'pre-line';
-        note.textContent = item.branchText;
-        checklist.appendChild(note);
-      }
-    });
+// PRE-MARKET
+function buildPM(){
+  const body=document.getElementById('pmBody');
+  body.innerHTML='';
+  pmQuestions.forEach((pq,i)=>{
+    const val=state.pm[`pm_${i}`]||'';
+    const row=document.createElement('div');
+    row.className='pm-row';
+    let ctrl='';
+    if(pq.type==='yn'){
+      ctrl=`<button class="pm-pill yes ${val==='yes'?'active':''}" onclick="setPM(${i},'yes')">Yes</button>
+            <button class="pm-pill no  ${val==='no' ?'active':''}" onclick="setPM(${i},'no')">No</button>`;
+    } else {
+      ctrl=`<input type="number" class="pm-number ${val?'filled':''}" min="1" max="20" placeholder="#" value="${val||''}"
+             oninput="setPMN(${i},this.value)" onchange="setPMN(${i},this.value)">`;
+    }
+    row.innerHTML=`
+      <span class="pm-num">${i+1}</span>
+      <div class="pm-col">
+        <div class="pm-q">${pq.q}</div>
+        ${pq.sub?`<div class="pm-sub">${pq.sub}</div>`:''}
+      </div>
+      <div class="pm-controls">${ctrl}</div>`;
+    body.appendChild(row);
   });
+  const proceed=document.createElement('div');
+  proceed.className='pm-proceed'; proceed.textContent='Answer all six to proceed.';
+  body.appendChild(proceed);
+  const rule=document.createElement('div');
+  rule.className='pm-rule';
+  rule.innerHTML=`<div class="pm-rule-label">Session Rule</div>
+    <div class="pm-rule-text">Miss 1–2 clean setups → you're done for the day.<br>Any <strong>No</strong> = no trading.</div>`;
+  body.appendChild(rule);
+  updateBadge();
+}
+function setPM(i,val){ state.pm[`pm_${i}`]=val; saveState(); buildPM(); }
+function setPMN(i,val){ state.pm[`pm_${i}`]=val; saveState(); updateBadge(); }
+function updateBadge(){
+  const b=document.getElementById('pmBadge');
+  const allDone=pmQuestions.every((_,i)=>state.pm[`pm_${i}`]);
+  const anyNo=pmQuestions.some((pq,i)=>pq.type==='yn'&&state.pm[`pm_${i}`]==='no');
+  if(!allDone){ b.textContent='PENDING'; b.className='pm-badge'; return; }
+  if(anyNo){ b.textContent='NO TRADE'; b.className='pm-badge fail'; }
+  else { b.textContent='PASS'; b.className='pm-badge pass'; }
+}
+document.getElementById('pmHeader').addEventListener('click',()=>{
+  document.getElementById('pmBody').classList.toggle('open');
+  document.getElementById('pmChevron').classList.toggle('open');
+});
 
-  const pct = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
-  document.getElementById('progressText').textContent = `${totalChecked} / ${totalItems}`;
-  document.getElementById('progressFill').style.width = pct + '%';
-
-  const msg = document.getElementById('completeMsg');
-  const txt = document.getElementById('completeText');
-  if (totalChecked === totalItems && totalItems > 0) {
-    txt.textContent = mode === 'buy' ? 'All conditions met. Execute long.' : 'All conditions met. Execute short.';
-    msg.className = 'complete-msg visible' + (mode === 'sell' ? ' sell-complete' : '');
-  } else {
-    msg.className = 'complete-msg';
-  }
+// STEPS
+function buildSteps(){
+  const c=document.getElementById('stepsContainer'); c.innerHTML='';
+  steps[currentTab].forEach((step,si)=>{
+    const allDone=step.items.every((_,ii)=>state[currentTab][sk(currentTab,si,ii)]);
+    const card=document.createElement('div');
+    card.className='step-card'+(allDone?' completed':'');
+    const hdr=document.createElement('div'); hdr.className='step-header';
+    hdr.innerHTML=`<div class="step-dot"></div>
+      <div class="step-title"><span style="font-size:16px">${step.icon}</span>
+        <span class="step-num"> Step ${si} —</span> ${step.title.replace(/^Step \d+ — /,'')}
+      </div>`;
+    card.appendChild(hdr);
+    const body=document.createElement('div'); body.className='step-body';
+    if(step.note){ const n=document.createElement('div'); n.className='step-note'; n.textContent=step.note; body.appendChild(n); }
+    step.items.forEach((item,ii)=>{
+      const key=sk(currentTab,si,ii); const checked=!!state[currentTab][key];
+      const row=document.createElement('div'); row.className='check-item'+(checked?' done':'');
+      row.innerHTML=`<div class="check-box ${checked?'checked':''}"></div>
+        <div class="check-text-wrap">
+          <span class="check-text">${item.text}</span>
+          ${item.hint?`<span class="check-hint">↳ ${item.hint}</span>`:''}
+        </div>`;
+      row.addEventListener('click',()=>toggle(si,ii));
+      body.appendChild(row);
+    });
+    card.appendChild(body); c.appendChild(card);
+  });
+  updateProgress();
+}
+function toggle(si,ii){
+  const key=sk(currentTab,si,ii); state[currentTab][key]=!state[currentTab][key];
+  saveState(); buildSteps();
+}
+function updateProgress(){
+  const ts=steps[currentTab];
+  const total=ts.reduce((a,s)=>a+s.items.length,0);
+  const done=ts.reduce((a,s,si)=>a+s.items.filter((_,ii)=>state[currentTab][sk(currentTab,si,ii)]).length,0);
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('progressCount').textContent=`${done} / ${total}`;
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressPct').textContent=pct+'%';
+  document.getElementById('completionBanner').classList.toggle('show',done===total&&total>0);
+}
+function setTab(tab){
+  currentTab=tab;
+  document.getElementById('tabBuy').classList.toggle('active',tab==='buy');
+  document.getElementById('tabSell').classList.toggle('active',tab==='sell');
+  buildSteps();
+}
+function resetAll(){
+  if(!confirm('Reset all progress for this tab?')) return;
+  state[currentTab]={}; saveState(); buildSteps();
 }
 
-function toggle(key) {
-  checked[key] = !checked[key];
-  render();
-}
-
-function resetAll() {
-  checked = {};
-  document.getElementById('completeMsg').className = 'complete-msg';
-  render();
-}
-
-render();
+loadState(); buildPM(); buildSteps();
 </script>
 
 </body>
