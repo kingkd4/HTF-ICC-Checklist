@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTF ICC Checklist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- For browser tab icon -->
+<link rel="icon" href="IMG_5352.jpeg" type="image/x-icon">
+
+<!-- For Apple devices (Add to Home Screen) -->
+<link rel="apple-touch-icon" href="IMG_5352.jpeg">
+
+<!-- Optional: For Android Chrome -->
+<link rel="manifest" href="manifest.json">
+
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --cream-dark: #ede6d6;
+    --ink: #1a1610;
+    --main: #659ea5;
+    --sub: #03468F;
+    --item: #2a6478;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --bg: #faf7f2;
+    --warn: #c17b4a;
+    --pass: #4a8c72;
+  }
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: var(–bg);
+font-family: ‘Jost’, sans-serif;
+min-height: 100vh;
+padding: 24px 16px 48px;
+color: var(–ink);
+}
+
+.container {
+max-width: 540px;
+margin: 0 auto;
+}
+
+/* Header */
+.header {
+text-align: center;
+padding: 32px 0 28px;
+border-bottom: 1px solid rgba(101,158,165,0.3);
+margin-bottom: 28px;
+}
+
+.header-eyebrow {
+font-family: ‘Jost’, sans-serif;
+font-weight: 300;
+font-size: 10px;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(–main);
+margin-bottom: 10px;
+}
+
+.header h1 {
+font-family: ‘Cormorant Garamond’, serif;
+font-weight: 300;
+font-size: 36px;
+color: var(–sub);
+line-height: 1.1;
+letter-spacing: 0.02em;
+}
+
+.header h1 em {
+font-style: italic;
+color: var(–main);
+}
+
+.header-sub {
+margin-top: 8px;
+font-size: 11px;
+font-weight: 300;
+letter-spacing: 0.12em;
+color: var(–item);
+text-transform: uppercase;
+}
+
+/* Direction Toggle */
+.direction-toggle {
+display: flex;
+gap: 8px;
+margin-bottom: 28px;
+background: var(–cream-dark);
+border-radius: 10px;
+padding: 4px;
+}
+
+.dir-btn {
+flex: 1;
+padding: 10px;
+border: none;
+border-radius: 8px;
+font-family: ‘Jost’, sans-serif;
+font-size: 11px;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.2s ease;
+background: transparent;
+color: #888;
+}
+
+.dir-btn.active-long {
+background: var(–pass);
+color: white;
+box-shadow: 0 2px 8px rgba(74,140,114,0.3);
+}
+
+.dir-btn.active-short {
+background: var(–warn);
+color: white;
+box-shadow: 0 2px 8px rgba(193,123,74,0.3);
+}
+
+/* Phase label */
+.phase-label {
+font-family: ‘Cormorant Garamond’, serif;
+font-style: italic;
+font-size: 13px;
+color: var(–gold);
+letter-spacing: 0.08em;
+margin-bottom: 10px;
+padding-left: 4px;
+}
+
+/* Steps */
+.steps {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 24px;
+}
+
+.step {
+background: white;
+border: 1px solid rgba(101,158,165,0.2);
+border-radius: 12px;
+padding: 14px 16px;
+display: flex;
+align-items: flex-start;
+gap: 14px;
+cursor: pointer;
+transition: all 0.18s ease;
+position: relative;
+overflow: hidden;
+}
+
+.step::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 3px;
+background: rgba(101,158,165,0.15);
+transition: background 0.2s;
+}
+
+.step:hover {
+border-color: rgba(101,158,165,0.4);
+transform: translateX(2px);
+}
+
+.step.checked {
+background: rgba(101,158,165,0.05);
+border-color: rgba(101,158,165,0.35);
+}
+
+.step.checked::before {
+background: var(–main);
+}
+
+.step.blocked {
+opacity: 0.35;
+pointer-events: none;
+}
+
+.step-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 18px;
+font-weight: 300;
+color: var(–main);
+min-width: 22px;
+line-height: 1;
+margin-top: 1px;
+}
+
+.step-content {
+flex: 1;
+}
+
+.step-title {
+font-size: 13px;
+font-weight: 500;
+color: var(–item);
+line-height: 1.35;
+margin-bottom: 3px;
+}
+
+.step-note {
+font-size: 11px;
+font-weight: 300;
+color: var(–sub);
+line-height: 1.45;
+font-style: italic;
+}
+
+.step-check {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+border: 1.5px solid rgba(101,158,165,0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+transition: all 0.18s ease;
+margin-top: 1px;
+}
+
+.step.checked .step-check {
+background: var(–main);
+border-color: var(–main);
+}
+
+.step-check svg {
+opacity: 0;
+transition: opacity 0.15s;
+}
+
+.step.checked .step-check svg {
+opacity: 1;
+}
+
+/* Branch */
+.branch-section {
+margin-bottom: 24px;
+border: 1px dashed rgba(184,150,90,0.4);
+border-radius: 12px;
+padding: 16px;
+background: rgba(245,240,232,0.5);
+}
+
+.branch-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 13px;
+font-weight: 500;
+font-style: italic;
+color: var(–gold);
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.branch-title::before {
+content: ‘⤷’;
+font-size: 14px;
+}
+
+/* Status bar */
+.status-bar {
+background: white;
+border: 1px solid rgba(101,158,165,0.2);
+border-radius: 12px;
+padding: 16px;
+margin-top: 8px;
+}
+
+.status-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 10px;
+}
+
+.status-label {
+font-size: 10px;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(–main);
+font-weight: 400;
+}
+
+.status-count {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 18px;
+color: var(–sub);
+}
+
+.progress-track {
+height: 4px;
+background: rgba(101,158,165,0.15);
+border-radius: 2px;
+overflow: hidden;
+margin-bottom: 12px;
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–main), var(–sub));
+border-radius: 2px;
+transition: width 0.4s ease;
+}
+
+.entry-badge {
+display: none;
+width: 100%;
+padding: 10px;
+border-radius: 8px;
+text-align: center;
+font-size: 11px;
+font-weight: 500;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+animation: fadeIn 0.4s ease;
+}
+
+.entry-badge.pass {
+display: block;
+background: rgba(74,140,114,0.12);
+color: var(–pass);
+border: 1px solid rgba(74,140,114,0.3);
+}
+
+.entry-badge.hold {
+display: block;
+background: rgba(193,123,74,0.1);
+color: var(–warn);
+border: 1px solid rgba(193,123,74,0.25);
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(4px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reset */
+.reset-btn {
+display: block;
+width: 100%;
+margin-top: 16px;
+padding: 12px;
+background: transparent;
+border: 1px solid rgba(101,158,165,0.3);
+border-radius: 10px;
+font-family: ‘Jost’, sans-serif;
+font-size: 10px;
+font-weight: 400;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–main);
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.reset-btn:hover {
+background: rgba(101,158,165,0.08);
+border-color: var(–main);
+}
+
+/* Divider */
+.tf-divider {
+display: flex;
+align-items: center;
+gap: 10px;
+margin: 20px 0 12px;
+}
+
+.tf-divider span {
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–main);
+white-space: nowrap;
+font-weight: 400;
+}
+
+.tf-divider::before, .tf-divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: rgba(101,158,165,0.2);
+}
+</style>
+
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-eyebrow">Indication · Correction · Continuation</div>
+    <h1>HTF <em>ICC</em><br>Checklist</h1>
+    <div class="header-sub">Multi-Timeframe Entry Protocol</div>
+  </div>
+
+  <!-- Direction Toggle -->
+
+  <div class="direction-toggle">
+    <button class="dir-btn active-long" id="btn-long" onclick="setDirection('long')">▲ Long / Uptrend</button>
+    <button class="dir-btn" id="btn-short" onclick="setDirection('short')">▼ Short / Downtrend</button>
+  </div>
+
+  <!-- Phase 1: HTF Structure -->
+
+  <div class="tf-divider"><span>Phase 1 — HTF Structure</span></div>
+  <div class="steps" id="phase1">
+
+```
+<div class="step" id="s1" onclick="toggle('s1')">
+  <div class="step-num">1</div>
+  <div class="step-content">
+    <div class="step-title">Mark 4H swing high & low</div>
+    <div class="step-note" id="s1-note">Identify previous 4H swing high and swing low — these define your macro range</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<div class="step" id="s2" onclick="toggle('s2')">
+  <div class="step-num">2</div>
+  <div class="step-content">
+    <div class="step-title">Mark 1H swing high & low</div>
+    <div class="step-note">Drop to 1H — mark the swing structure within the 4H range</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<div class="step" id="s3" onclick="toggle('s3')">
+  <div class="step-num">3</div>
+  <div class="step-content">
+    <div class="step-title" id="s3-title">Indication confirmed on 1H or 4H</div>
+    <div class="step-note" id="s3-note">Price makes a HH & HL (uptrend) on either timeframe — indication phase is live</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Phase 2: Correction -->
+
+  <div class="tf-divider"><span>Phase 2 — Correction (15 min)</span></div>
+  <div class="steps" id="phase2">
+
+```
+<div class="step" id="s4" onclick="toggle('s4')">
+  <div class="step-num">4</div>
+  <div class="step-content">
+    <div class="step-title">Drop to 15 min — watch for correction end</div>
+    <div class="step-note" id="s4-note">Wait for BOS on 15 min confirming the correction is over before scaling down</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<div class="step" id="s5" onclick="toggle('s5')">
+  <div class="step-num">5</div>
+  <div class="step-content">
+    <div class="step-title" id="s5-title">Mark pink line — correction swing high</div>
+    <div class="step-note" id="s5-note">Mark the HH & HL level with a pink line on 15 min — this is the continuation trigger level</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Branch A / B -->
+
+  <div class="branch-section">
+    <div class="branch-title">Correction Path — choose one</div>
+
+```
+<div class="steps">
+  <div class="step" id="s6a" onclick="toggle('s6a')">
+    <div class="step-num" style="color:var(--pass)">A</div>
+    <div class="step-content">
+      <div class="step-title">Price DID come back under swing level on 15 min</div>
+      <div class="step-note">Clean correction — wait for price to break above the marked correction swing high (pink line), then scale to 5 min immediately</div>
+    </div>
+    <div class="step-check">
+      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+        <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="step" id="s6b" onclick="toggle('s6b')">
+    <div class="step-num" style="color:var(--gold)">B</div>
+    <div class="step-content">
+      <div class="step-title">Price did NOT come back under swing level</div>
+      <div class="step-note">Shallow correction — once indication is over, scale to 5 min. Wait for continuation to push above pink line on 15 min, then immediately scale to 5 min</div>
+    </div>
+    <div class="step-check">
+      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+        <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Phase 3: Entry -->
+
+  <div class="tf-divider"><span>Phase 3 — Entry (5 min / 1 min)</span></div>
+  <div class="steps" id="phase3">
+
+```
+<div class="step" id="s7" onclick="toggle('s7')">
+  <div class="step-num">6</div>
+  <div class="step-content">
+    <div class="step-title">5 min break of pink line confirmed</div>
+    <div class="step-note">Price breaks above the pink line on 5 min — enter on the break or wait for the retest (retest is acceptable)</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<div class="step" id="s8" onclick="toggle('s8')">
+  <div class="step-num">7</div>
+  <div class="step-content">
+    <div class="step-title">All timeframes aligned & correlating</div>
+    <div class="step-note">4H, 1H, 15 min, and 5 min all showing the same directional bias — all must correlate before entering</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<div class="step" id="s9" onclick="toggle('s9')">
+  <div class="step-num">8</div>
+  <div class="step-content">
+    <div class="step-title" id="s9-title">Drop to 1 min for entry & stop placement</div>
+    <div class="step-note" id="s9-note">Take entry on 1 min — place stop above 5 min swing high (short) or below 5 min swing low (long)</div>
+  </div>
+  <div class="step-check">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+      <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Status -->
+
+  <div class="status-bar">
+    <div class="status-row">
+      <span class="status-label">Checklist Progress</span>
+      <span class="status-count" id="count-display">0 / 8</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="entry-badge" id="entry-badge"></div>
+  </div>
+
+<button class="reset-btn" onclick="resetAll()">↺   Reset Checklist</button>
+
+</div>
+
+<script>
+  const TOTAL = 8;
+  let direction = 'long';
+  const checked = new Set();
+
+  const longLabels = {
+    s1: ['Mark 4H swing high & low', 'Identify previous 4H swing high and swing low — these define your macro range'],
+    s3: ['Indication confirmed on 1H or 4H', 'Price makes HH & HL (uptrend) on either TF — indication phase is live'],
+    s4: ['Drop to 15 min — watch for correction end', 'Wait for BOS on 15 min confirming the pullback is over'],
+    s5: ['Mark pink line — correction swing high', 'Mark the HH & HL level in pink on 15 min — continuation trigger'],
+    s9: ['Drop to 1 min for entry & stop placement', 'Take entry on 1 min — stop below 5 min swing low (long)']
+  };
+
+  const shortLabels = {
+    s1: ['Mark 4H swing high & low', 'Identify previous 4H swing high and swing low — these define your macro range'],
+    s3: ['Indication confirmed on 1H or 4H', 'Price makes LH & LL (downtrend) on either TF — indication phase is live'],
+    s4: ['Drop to 15 min — watch for correction end', 'Wait for BOS on 15 min confirming the correction (pullback up) is over'],
+    s5: ['Mark pink line — correction swing low', 'Mark the LH & LL level in pink on 15 min — continuation trigger'],
+    s9: ['Drop to 1 min for entry & stop placement', 'Take entry on 1 min — stop above 5 min swing high (short)']
+  };
+
+  function setDirection(dir) {
+    direction = dir;
+    document.getElementById('btn-long').className = 'dir-btn' + (dir === 'long' ? ' active-long' : '');
+    document.getElementById('btn-short').className = 'dir-btn' + (dir === 'short' ? ' active-short' : '');
+    applyLabels();
+    resetAll();
+  }
+
+  function applyLabels() {
+    const labels = direction === 'long' ? longLabels : shortLabels;
+    for (const [id, [title, note]] of Object.entries(labels)) {
+      const titleEl = document.querySelector(`#${id} .step-title`);
+      const noteEl = document.querySelector(`#${id} .step-note`);
+      if (titleEl) titleEl.textContent = title;
+      if (noteEl) noteEl.textContent = note;
+    }
+  }
+
+  function toggle(id) {
+    const el = document.getElementById(id);
+    if (checked.has(id)) {
+      checked.delete(id);
+      el.classList.remove('checked');
+    } else {
+      checked.add(id);
+      el.classList.add('checked');
+    }
+    updateStatus();
+  }
+
+  function updateStatus() {
+    // count only numbered steps (not branch A/B which are s6a, s6b)
+    const numbered = ['s1','s2','s3','s4','s5','s7','s8','s9'];
+    const done = numbered.filter(id => checked.has(id)).length;
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('count-display').textContent = `${done} / ${TOTAL}`;
+    document.getElementById('progress-fill').style.width = pct + '%';
+
+    const badge = document.getElementById('entry-badge');
+    if (done === TOTAL) {
+      badge.className = 'entry-badge pass';
+      badge.textContent = '✓ All conditions met — cleared to enter';
+    } else if (done >= 5) {
+      badge.className = 'entry-badge hold';
+      badge.textContent = `${TOTAL - done} condition${TOTAL - done > 1 ? 's' : ''} remaining`;
+    } else {
+      badge.className = 'entry-badge';
+      badge.textContent = '';
+    }
+  }
+
+  function resetAll() {
+    checked.clear();
+    document.querySelectorAll('.step').forEach(el => el.classList.remove('checked'));
+    document.getElementById('count-display').textContent = '0 / 8';
+    document.getElementById('progress-fill').style.width = '0%';
+    document.getElementById('entry-badge').className = 'entry-badge';
+    document.getElementById('entry-badge').textContent = '';
+  }
+
+  applyLabels();
+</script>
+
+</body>
+</html>
