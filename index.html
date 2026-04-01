@@ -5,17 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HTF ICC Strategy Checklist</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
-<!-- For browser tab icon -->
-<link rel="icon" href="IMG_5352.jpeg" type="image/x-icon">
-
-<!-- For Apple devices (Add to Home Screen) -->
-<link rel="apple-touch-icon" href="IMG_5352.jpeg">
-
-<!-- Optional: For Android Chrome -->
-<link rel="manifest" href="manifest.json">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-deep:   #1a4a2e;
@@ -36,11 +26,11 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: ‘Montserrat’, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: var(--green-frost);
     color: var(--text-body);
     min-height: 100vh;
-    padding: 0 0 60px;
+    padding: 36px 16px 60px;
   }
 
 /* Header */
@@ -50,17 +40,17 @@ padding: 52px 24px 32px;
 background: var(–green-frost);
 }
 .eyebrow {
-font-size: 10px; font-weight: 700; letter-spacing: .22em;
+font-size: 9px; font-weight: 500; letter-spacing: .24em;
 color: var(–text-sub); text-transform: uppercase; margin-bottom: 10px;
 display: block;
 }
 .header h1 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 60px; font-weight: 600; color: var(–green-deep); line-height: 1; margin-bottom: 8px;
+font-family: 'Cormorant Garamond', serif; font-size: 44px;
+font-weight: 600; color: var(–green-deep); line-height: 1; margin-bottom: 8px;
 letter-spacing: -.01em;
 }
 .subtitle {
-font-size: 10px; font-weight: 700; letter-spacing: .2em;
+font-size: 10px; font-weight: 500; letter-spacing: .22em;
 color: var(–text-hint); text-transform: uppercase;
 }
 .divider { width: 50px; height: 1.5px; background: var(–green-light); margin: 16px auto 14px; border-radius: 2px; }
@@ -70,7 +60,7 @@ color: var(–text-hint); text-transform: uppercase;
 
 /* Pre-market */
 .pm-card {
-background: var(–white); border: 1.5px solid var(–border);
+background: var(–white); border: 2px solid var(–border);
 border-radius: 16px; overflow: hidden; margin-bottom: 12px;
 box-shadow: 0 2px 10px var(–shadow);
 }
@@ -80,12 +70,12 @@ padding: 16px 20px; cursor: pointer;
 }
 .pm-title {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 24px; font-weight: 600; color: var(–text-dark);
+font-size: 22px; font-weight: 500; color: var(–text-dark); letter-spacing: .01em;
 }
 .pm-title em { font-style: italic; color: var(–green-main); }
 .pm-right { display: flex; align-items: center; gap: 10px; }
 .pm-badge {
-font-size: 10px; font-weight: 700; letter-spacing: .12em;
+font-size: 9px; font-weight: 500; letter-spacing: .14em;
 color: var(–text-sub); background: var(–green-mist);
 border: 1px solid var(–border); border-radius: 20px; padding: 4px 12px; transition: all .2s;
 }
@@ -103,16 +93,15 @@ padding: 13px 20px; border-bottom: 1px solid var(–border-light);
 }
 .pm-row:last-of-type { border-bottom: none; }
 .pm-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 16px; color: var(–text-hint); min-width: 16px; margin-top: 2px;
+font-size: 13px; font-weight: 300; color: var(–text-hint); min-width: 16px; margin-top: 3px;
 }
 .pm-col { flex: 1; }
-.pm-q { font-size: 13.5px; color: var(–text-body); line-height: 1.45; }
-.pm-sub { font-size: 11.5px; color: var(–text-hint); margin-top: 2px; }
+.pm-q { font-size: 13px; font-weight: 400; color: var(–text-body); line-height: 1.5; }
+.pm-sub { font-size: 11px; font-weight: 300; color: var(–text-hint); margin-top: 2px; line-height: 1.4; }
 .pm-controls { display: flex; gap: 6px; flex-shrink: 0; align-items: flex-start; margin-top: 2px; }
 .pm-pill {
-font-size: 11px; font-weight: 700; letter-spacing: .06em;
-padding: 5px 14px; border-radius: 20px;
+font-size: 10px; font-weight: 500; letter-spacing: .04em;
+padding: 5px 13px; border-radius: 20px;
 border: 1.5px solid var(–border); background: transparent; color: var(–text-hint);
 cursor: pointer; transition: all .15s;
 }
@@ -134,42 +123,42 @@ font-family: ‘Cormorant Garamond’, serif; font-style: italic; font-size: 14p
 margin: 0 16px 16px; background: var(–green-mist);
 border: 1px solid var(–border); border-radius: 10px; padding: 12px 14px;
 }
-.pm-rule-label { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(–text-sub); margin-bottom: 5px; }
-.pm-rule-text { font-size: 12.5px; color: var(–text-body); line-height: 1.6; }
-.pm-rule-text strong { color: #c0392b; }
+.pm-rule-label { font-size: 8px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(–text-sub); margin-bottom: 5px; }
+.pm-rule-text { font-size: 12px; font-weight: 400; color: var(–text-body); line-height: 1.7; }
+.pm-rule-text strong { color: #c0392b; font-weight: 600; }
 
 /* Progress */
 .progress-card {
-background: var(–white); border: 1.5px solid var(–border);
+background: var(–white); border: 2px solid var(–border);
 border-radius: 16px; padding: 16px 20px; margin-bottom: 6px;
 }
 .progress-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-.progress-label { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(–text-sub); text-transform: uppercase; }
-.progress-count { font-family: ‘Cormorant Garamond’, serif; font-size: 28px; color: var(–green-deep); font-weight: 600; }
-.progress-bar-bg { height: 5px; background: var(–green-mist); border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+.progress-label { font-size: 10px; font-weight: 400; letter-spacing: .16em; color: var(–text-sub); text-transform: uppercase; }
+.progress-count { font-family: ‘Cormorant Garamond’, serif; font-size: 26px; color: var(–green-deep); font-weight: 500; }
+.progress-bar-bg { height: 4px; background: var(–green-mist); border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
 .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(–green-mid), var(–green-light)); border-radius: 4px; transition: width .4s ease; width: 0%; }
-.progress-pct { font-size: 11px; color: var(–text-hint); text-align: right; }
+.progress-pct { font-size: 10px; font-weight: 300; color: var(–text-hint); text-align: right; }
 .reset-row { text-align: right; padding: 4px 0 8px; }
-.reset-btn { font-size: 10px; font-weight: 700; letter-spacing: .14em; color: var(–text-hint); background: none; border: none; cursor: pointer; text-transform: uppercase; padding: 4px 2px; }
+.reset-btn { font-size: 9px; font-weight: 400; letter-spacing: .16em; color: var(–text-hint); background: none; border: none; cursor: pointer; text-transform: uppercase; padding: 4px 2px; }
 .reset-btn:hover { color: var(–green-main); }
 
-/* Tabs */
 .tab-row { display: flex; gap: 10px; margin-bottom: 18px; }
 .tab-btn {
-flex: 1; padding: 14px 8px; border-radius: 14px; font-size: 11px; font-weight: 700;
+flex: 1; padding: 13px 8px; border-radius: 14px; font-size: 10px; font-weight: 500;
 letter-spacing: .14em; text-transform: uppercase; cursor: pointer;
-border: 1.5px solid var(–border); background: var(–white); color: var(–text-hint); transition: all .2s;
+border: 1.5px solid var(–border); background: var(–white); color: var(–text-sub); transition: all .2s;
 display: flex; align-items: center; justify-content: center; gap: 6px;
 -webkit-tap-highlight-color: transparent;
 }
 .tab-btn.active {
 background: var(–green-main); color: #fff; border-color: var(–green-main);
-box-shadow: 0 4px 14px rgba(45,122,80,.30);
+box-shadow: 0 4px 14px rgba(45,122,80,.25);
 }
 
 /* Steps */
 .step-card {
-background: var(–white); border: 1.5px solid var(–border);
+background: var(–white);
+border: 2px solid var(–border);
 border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: box-shadow .2s;
 }
 .step-card:hover { box-shadow: 0 3px 16px var(–shadow); }
@@ -177,27 +166,31 @@ border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: box-shad
 .step-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; }
 .step-dot { width: 9px; height: 9px; border-radius: 50%; background: var(–border); flex-shrink: 0; transition: background .3s; }
 .step-card.completed .step-dot { background: var(–green-main); }
-.step-title { font-family: ‘Cormorant Garamond’, serif; font-size: 21px; font-weight: 600; color: var(–green-deep); flex: 1; line-height: 1.3; }
-.step-num { color: var(–green-main); margin-right: 4px; }
+.step-title { font-family: ‘Cormorant Garamond’, serif; font-size: 22px; font-weight: 500; color: var(–green-deep); flex: 1; line-height: 1.3; }
+.step-num { color: var(–green-main); margin-right: 2px; }
 .step-body { padding: 0 18px 16px; }
 .step-note {
-font-family: ‘Cormorant Garamond’, serif; font-size: 14px; font-style: italic;
-color: var(–text-sub); line-height: 1.6;
-border-left: 2.5px solid var(–green-light); padding-left: 12px; margin-bottom: 14px;
+font-family: ‘Cormorant Garamond’, serif; font-size: 15px; font-style: italic;
+color: var(–text-sub); line-height: 1.65;
+border-left: 2.5px solid var(–green-light); padding-left: 14px; margin-bottom: 14px;
 }
-.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(–border-light); cursor: pointer; }
+.check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(–border-light); cursor: pointer; }
 .check-item:last-of-type { border-bottom: none; }
 .check-box {
-width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(–border);
-flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center;
+width: 20px; height: 20px; min-width: 20px; min-height: 20px;
+border-radius: 6px;
+border: 2px solid var(–green-main);
+flex-shrink: 0; margin-top: 2px;
+display: flex; align-items: center; justify-content: center;
 transition: all .2s; background: var(–white);
+-webkit-appearance: none;
 }
 .check-box.checked { background: var(–green-main); border-color: var(–green-main); }
-.check-box.checked::after { content:’’; display:block; width:5px; height:9px; border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg) translateY(-1px); }
+.check-box.checked::after { content:’’; display:block; width:5px; height:10px; border:2.5px solid #fff; border-top:none; border-left:none; transform:rotate(45deg) translateY(-1px); }
 .check-text-wrap { flex: 1; }
-.check-text { font-size: 13.5px; color: var(–text-body); line-height: 1.5; transition: color .2s; }
+.check-text { font-size: 14px; font-weight: 400; color: var(–text-body); line-height: 1.55; transition: color .2s; }
 .check-item.done .check-text { color: var(–text-hint); text-decoration: line-through; }
-.check-hint { font-family:‘Cormorant Garamond’,serif; font-style:italic; font-size:12.5px; color:var(–text-hint); line-height:1.5; margin-top:2px; display:block; }
+.check-hint { font-family:‘Cormorant Garamond’,serif; font-style:italic; font-size:13px; color:var(–text-hint); line-height:1.5; margin-top:3px; display:block; }
 
 .completion-banner { display:none; background:linear-gradient(135deg,var(–green-main),var(–accent)); color:#fff; border-radius:16px; padding:22px 20px; text-align:center; margin-bottom:16px; }
 .completion-banner.show { display:block; }
@@ -452,6 +445,11 @@ function updateBadge(){
   if(!allDone){ b.textContent='PENDING'; b.className='pm-badge'; return; }
   if(anyNo){ b.textContent='NO TRADE'; b.className='pm-badge fail'; }
   else { b.textContent='PASS'; b.className='pm-badge pass'; }
+  // auto-close dropdown when complete
+  setTimeout(()=>{
+    document.getElementById('pmBody').classList.remove('open');
+    document.getElementById('pmChevron').classList.remove('open');
+  }, 600);
 }
 document.getElementById('pmHeader').addEventListener('click',()=>{
   document.getElementById('pmBody').classList.toggle('open');
@@ -509,7 +507,6 @@ function setTab(tab){
   buildSteps();
 }
 function resetAll(){
-  if(!confirm('Reset all progress for this tab?')) return;
   state[currentTab]={}; saveState(); buildSteps();
 }
 
